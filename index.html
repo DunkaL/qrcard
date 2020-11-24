@@ -1,0 +1,2066 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta charset="utf-8" />
+	<meta name="yandex-verification" content="bf02270df252a7f1" />
+	<link rel="shortcut icon" href="#" />
+	<link rel="apple-touch-icon" href="#" />
+	<meta name="mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<link rel="icon" href="#" type="image/x-icon" />
+	<meta name="theme-color" content="#fefefe" />
+	<meta name="keywords" content="#" />
+	<meta name="description" content="#" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<link rel="manifest" href="#" />
+	<title>qrcard</title>
+	<style type="text/css">
+		@import url(https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;900&amp;display=swap);
+
+		.flx,
+		.flx-aic,
+		.flx-aife,
+		.flx-column,
+		.flx-jcc,
+		.flx-jcc-aic,
+		.flx-jcsb,
+		.flx-jcsb-aic {
+			display: flex
+		}
+
+		.flx-jcc,
+		.flx-jcc-aic {
+			justify-content: center
+		}
+
+		.flx-jcsb,
+		.flx-jcsb-aic {
+			justify-content: space-between
+		}
+
+		.flx-aic,
+		.flx-jcc-aic,
+		.flx-jcsb-aic {
+			align-items: center
+		}
+
+		.flx-aife {
+			align-items: flex-end
+		}
+
+		.flx-column {
+			flex-direction: column
+		}
+
+		.row {
+			position: relative;
+			display: flex;
+			flex-wrap: wrap;
+			margin-left: -14px;
+			margin-right: -14px;
+			flex: 1 1 0
+		}
+
+		@media (max-width:567px) {
+			.row.mobile-reverse {
+				flex-direction: column-reverse
+			}
+		}
+
+		.row.large-gap {
+			margin-right: -62px;
+			margin-left: -62px
+		}
+
+		.row.large-gap .col-lg-6 {
+			padding: 0 62px
+		}
+
+		.col-lg-3 {
+			width: 25%;
+			padding: 0 14px
+		}
+
+		@media (max-width:567px) {
+			.col-md-6 {
+				width: 50%;
+				padding: 0 14px
+			}
+
+			.col-md-12 {
+				width: 100%;
+				padding: 0 14px
+			}
+		}
+
+		* {
+			padding: 0;
+			margin: 0;
+			border: none;
+			outline: none;
+			background: none;
+			box-sizing: border-box;
+			font-family: Exo\ 2, sans-serif
+		}
+
+		body {
+			font-style: normal
+		}
+
+		#app,
+		body {
+			overflow-x: hidden;
+			max-width: 100vw
+		}
+
+		.semi-bold {
+			font-weight: 600
+		}
+
+		.btn {
+			display: inline-block;
+			font-size: 14px;
+			text-transform: uppercase;
+			font-weight: 500;
+			line-height: 17px;
+			padding: 8px 29px 9px;
+			border: 1px solid transparent;
+			border-radius: 1px;
+			cursor: pointer;
+			white-space: nowrap;
+			text-decoration: none;
+			text-align: center;
+			vertical-align: middle
+		}
+
+		.btn.btn-block {
+			width: 100%;
+			display: block;
+			padding-right: 0 !important;
+			padding-left: 0 !important
+		}
+
+		.btn.btn-big {
+			font-size: 18px;
+			line-height: 22px;
+			padding: 8px 25px;
+			border-radius: 3px
+		}
+
+		.btn.btn-primary {
+			color: #fff;
+			fill: #fff;
+			border-color: #fb7371;
+			background: #fb7371
+		}
+
+		.btn.btn-primary.gray,
+		.btn.btn-primary:focus,
+		.btn.btn-primary:hover {
+			border-color: rgba(0, 0, 0, .3);
+			background: transparent;
+			color: #000;
+			fill: #000
+		}
+
+		.btn.btn-primary.btn-outlined {
+			background: transparent;
+			color: #fb7371;
+			fill: #fb7371;
+			stroke: #fb7371
+		}
+
+		.btn.btn-primary.btn-outlined:focus,
+		.btn.btn-primary.btn-outlined:hover {
+			border-color: #fb7371;
+			background: #fb7371;
+			color: #fff;
+			fill: #fff;
+			stroke: #fff
+		}
+
+		img.img-block-h100 {
+			display: block;
+			height: 100%
+		}
+
+		img.img-block-w100 {
+			display: block;
+			width: 100%
+		}
+
+		.container {
+			position: relative;
+			width: 100%;
+			margin: 0 auto
+		}
+
+		@media (min-width:1200px) {
+			.container {
+				max-width: 1140px
+			}
+		}
+
+		@media (max-width:767px) {
+			.container {
+				margin: 0 auto
+			}
+		}
+
+		.link-group {
+			flex: 1 1 0
+		}
+
+		.link-group a {
+			font-family: Exo\ 2, sans-serif;
+			font-weight: 500;
+			display: inline-block;
+			margin: 0 20px;
+			text-transform: uppercase;
+			text-decoration: none;
+			color: #000;
+			font-size: 14px;
+			line-height: 17px;
+			stroke: #000
+		}
+
+		@media (max-width:567px) {
+			.link-group a {
+				display: block;
+				margin: 0 0 6px
+			}
+		}
+
+		.link-group a.highlighted {
+			color: #fa423f;
+			stroke: #fa423f
+		}
+
+		.link-group a:hover {
+			color: #fb7371;
+			fill: #fb7371;
+			stroke: #fb7371
+		}
+
+		.link-group a:first-child {
+			margin-left: 0
+		}
+
+		.link-group a:last-child {
+			margin-right: 0
+		}
+
+		img.link-icon {
+			margin-left: 10px
+		}
+
+		.svg-icon-sm,
+		img.link-icon {
+			position: relative;
+			top: 1.5px
+		}
+
+		.svg-icon-sm {
+			height: 14px;
+			width: 14px
+		}
+
+		.feedback-form {
+			padding: 30px
+		}
+
+		.feedback-form .form-title {
+			font-family: Exo\ 2, sans-serif;
+			font-weight: 400;
+			font-size: 24px;
+			line-height: 30px;
+			margin-bottom: 20px
+		}
+
+		form .input-group {
+			display: block
+		}
+
+		form .input-group:not(:last-child) {
+			margin-bottom: 20px
+		}
+
+		form .input-group label {
+			display: block;
+			margin-bottom: 10px;
+			font-family: Exo\ 2, sans-serif;
+			font-weight: 600;
+			font-size: 16px;
+			line-height: 19px
+		}
+
+		form .input-group input[type=email],
+		form .input-group input[type=text] {
+			height: 36px;
+			padding: 0 10px
+		}
+
+		form .input-group input[type=email],
+		form .input-group input[type=text],
+		form .input-group textarea {
+			font-family: Open Sans, sans-serif;
+			font-style: normal;
+			font-weight: 300;
+			font-size: 14px;
+			background: #fff;
+			border: 1px solid rgba(0, 0, 0, .4);
+			box-sizing: border-box;
+			border-radius: 5px;
+			display: block;
+			width: 100%
+		}
+
+		form .input-group textarea {
+			height: fit-content;
+			resize: vertical;
+			padding: 10px
+		}
+
+		@media (max-width:567px) {
+			.mobile-hidden {
+				display: none !important
+			}
+		}
+
+		header {
+			position: relative;
+			padding-top: 96px;
+			margin-bottom: 212px
+		}
+
+		@media (max-width:567px) {
+			header {
+				padding-top: 70px;
+				margin-bottom: 10px
+			}
+		}
+
+		header img.header-background {
+			position: absolute;
+			display: block;
+			z-index: -1
+		}
+
+		header img.header-background.top {
+			top: 0
+		}
+
+		header img.header-background.bottom {
+			bottom: 0
+		}
+
+		header img.header-background.right {
+			right: 0
+		}
+
+		@media (max-width:567px) {
+			header img.header-background.right {
+				width: 100%
+			}
+		}
+
+		header img.header-background.left {
+			left: 0
+		}
+
+		@media (max-width:567px) {
+			header img.header-background.left {
+				width: 33%
+			}
+		}
+
+		header .header-nav {
+			margin: 50px 0
+		}
+
+		header .header-title img.title-image {
+			max-width: 803px;
+			display: block;
+			width: 100%;
+			margin-bottom: 30px;
+			padding: 9px 0
+		}
+
+		@media (max-width:567px) {
+			header .header-title {
+				padding: 2em
+			}
+		}
+
+		header .header-tagline {
+			font-weight: 500;
+			font-size: 32px;
+			line-height: 38px;
+			text-align: center;
+			letter-spacing: .2em;
+			text-transform: uppercase;
+			color: #000;
+			margin-bottom: 50px
+		}
+
+		@media (max-width:567px) {
+			header .header-tagline {
+				visibility: hidden
+			}
+		}
+
+		@media (max-width:567px) {
+			header .header-nav {
+				display: none
+			}
+		}
+
+		header .header-nav .header-nav-title {
+			margin-bottom: 20px;
+			font-weight: 300;
+			font-size: 18px;
+			line-height: 22px;
+			text-align: center;
+			text-transform: uppercase
+		}
+
+		header .header-nav .header-nav-links {
+			padding-bottom: 37px
+		}
+
+		header .header-nav .header-nav-links .header-nav-link {
+			margin: 0 10px
+		}
+
+		header .header-nav .header-nav-links .header-nav-link .abbr {
+			font-weight: 600;
+			margin-right: 10px
+		}
+
+		.advantages,
+		.row {
+			position: relative;
+			display: flex;
+			flex-wrap: wrap;
+			margin-left: -14px;
+			margin-right: -14px;
+			flex: 1 1 0
+		}
+
+		@media (max-width:567px) {
+
+			.mobile-reverse.advantages,
+			.row.mobile-reverse {
+				flex-direction: column-reverse
+			}
+		}
+
+		.large-gap.advantages,
+		.row.large-gap {
+			margin-right: -62px;
+			margin-left: -62px
+		}
+
+		.large-gap.advantages .col-lg-6,
+		.row.large-gap .col-lg-6 {
+			padding: 0 62px
+		}
+
+		.col-lg-06 {
+			width: 5.5555555556%
+		}
+
+		.col-lg-1 {
+			width: 8.3333333333%;
+			padding: 0 14px
+		}
+
+		.col-lg-2 {
+			width: 16.6666666667%;
+			padding: 0 14px
+		}
+
+		.col-lg-25 {
+			width: 20.8333333333%;
+			padding: 0 14px
+		}
+
+		.advantages .adv-item,
+		.col-lg-3 {
+			width: 25%;
+			padding: 0 14px
+		}
+
+		.col-lg-4 {
+			width: 33.3333333333%;
+			padding: 0 14px
+		}
+
+		.col-lg-5 {
+			width: 41.6666666667%;
+			padding: 0 14px
+		}
+
+		.col-lg-6 {
+			width: 50%;
+			padding: 0 14px
+		}
+
+		.col-lg-7 {
+			width: 58.3333333333%;
+			padding: 0 14px
+		}
+
+		.col-lg-8 {
+			width: 66.6666666667%;
+			padding: 0 14px
+		}
+
+		.col-lg-9 {
+			width: 75%;
+			padding: 0 14px
+		}
+
+		.col-lg-10 {
+			width: 83.3333333333%;
+			padding: 0 14px
+		}
+
+		.col-lg-11 {
+			width: 91.6666666667%;
+			padding: 0 14px
+		}
+
+		.col-lg-12 {
+			width: 100%;
+			padding: 0 14px
+		}
+
+		@media (max-width:567px) {
+			.col-md-6 {
+				width: 50%;
+				padding: 0 14px
+			}
+
+			.advantages .adv-item,
+			.col-md-12 {
+				width: 100%;
+				padding: 0 14px
+			}
+		}
+
+		.column {
+			display: flex;
+			flex-direction: column
+		}
+
+		.grid-row {
+			display: grid
+		}
+
+		nav.navbar+section.chapter {
+			margin-top: 196px
+		}
+
+		@media (max-width:567px) {
+			nav.navbar+section.chapter {
+				margin-top: 20px
+			}
+		}
+
+		@media (max-width:567px) {
+			section.chapter {
+				padding: 0 1em
+			}
+		}
+
+		section.chapter:not(:first-of-type) {
+			padding-top: 150px
+		}
+
+		@media (max-width:567px) {
+			section.chapter:not(:first-of-type) {
+				padding-top: 50px
+			}
+		}
+
+		section.chapter:last-of-type {
+			margin-bottom: 110px
+		}
+
+		@media (max-width:567px) {
+			section.chapter:last-of-type {
+				margin-bottom: 25px
+			}
+		}
+
+		section.chapter .chapter-title {
+			display: inline-block;
+			margin-bottom: 100px
+		}
+
+		@media (max-width:567px) {
+			section.chapter .chapter-title {
+				margin-bottom: 30px
+			}
+
+			section.chapter .chapter-title img {
+				display: block;
+				width: 100%
+			}
+
+			section.chapter .chapter-title img:not(:first-child) {
+				margin-top: 1em
+			}
+		}
+
+		section.chapter .chapter-title .chapter-title-primary-text {
+			position: relative;
+			font-weight: 300;
+			font-size: 36px;
+			line-height: 43px;
+			text-transform: uppercase
+		}
+
+		@media (max-width:567px) {
+			section.chapter .chapter-title .chapter-title-primary-text {
+				font-size: 24px
+			}
+		}
+
+		section.chapter .chapter-title .chapter-title-primary-text:after {
+			content: " ";
+			display: block;
+			position: absolute;
+			bottom: -5px;
+			right: 0;
+			height: 1px;
+			width: 1000%;
+			background: #e9e9e9
+		}
+
+		section.chapter .chapter-title .chapter-title-secondary-text {
+			font-family: Open Sans, sans-serif;
+			text-align: right;
+			margin-top: 10px;
+			font-weight: 300;
+			font-size: 18px;
+			line-height: 25px;
+			text-transform: uppercase;
+			color: #b0b0b0
+		}
+
+		@media (max-width:567px) {
+			section.chapter .chapter-title .chapter-title-secondary-text {
+				font-size: 14px
+			}
+		}
+
+		section.chapter .chapter-article {
+			display: grid;
+			grid-column-gap: 40px
+		}
+
+		@media (max-width:567px) {
+			section.chapter .chapter-article img {
+				display: block;
+				width: 100%
+			}
+		}
+
+		section.chapter .chapter-article:not(:last-child) {
+			margin-bottom: 40px
+		}
+
+		section.chapter .chapter-article.normal {
+			grid-template: auto/1fr 659px
+		}
+
+		section.chapter .chapter-article.reverse {
+			grid-template: auto/659px 1fr
+		}
+
+		section.chapter .chapter-article.for-gallery {
+			grid-column-gap: 66px;
+			grid-template: auto/1fr 555px
+		}
+
+		@media (max-width:567px) {
+			section.chapter .chapter-article {
+				display: block
+			}
+		}
+
+		section.chapter .chapter-text-block {
+			padding: 7px 0
+		}
+
+		section.chapter .chapter-text-block.big-text .chapter-text p {
+			line-height: 25px;
+			font-size: 18px
+		}
+
+		@media (max-width:567px) {
+			section.chapter .chapter-text-block.big-text .chapter-text p {
+				font-size: 14px;
+				line-height: 19px
+			}
+		}
+
+		section.chapter .chapter-text-block.big-text .chapter-text.moved-left {
+			transform: translateX(-120px);
+			width: calc(100% + 120px)
+		}
+
+		@media (max-width:567px) {
+			section.chapter .chapter-text-block.big-text .chapter-text.moved-left {
+				transform: none;
+				width: auto
+			}
+
+			section.chapter .chapter-text-block.big-text .chapter-text.moved-left .text-block {
+				padding: 0 !important
+			}
+		}
+
+		section.chapter .chapter-text-block .chapter-text {
+			background: #fff
+		}
+
+		section.chapter .chapter-text-block .chapter-text-with-image {
+			display: grid;
+			grid-column-gap: 40px;
+			grid-template: auto/191px auto
+		}
+
+		section.chapter .chapter-text-block .chapter-text-with-image.reverse {
+			grid-template: auto/auto 191px
+		}
+
+		section.chapter .chapter-text-block .chapter-text-with-image.small-image {
+			grid-column-gap: 20px;
+			grid-template: auto/129px auto
+		}
+
+		section.chapter .chapter-text-block .chapter-text-with-image.small-image.reverse {
+			grid-template: auto/auto 129px
+		}
+
+		@media (max-width:567px) {
+			section.chapter .chapter-text-block .chapter-text-with-image {
+				display: block
+			}
+		}
+
+		section.chapter .chapter-text-block .chapter-text.light * {
+			color: #3f3f3f
+		}
+
+		section.chapter .chapter-text-block .chapter-text:not(:last-child) {
+			margin-bottom: 40px
+		}
+
+		@media (max-width:567px) {
+			section.chapter .chapter-text-block .chapter-text:not(:last-child) {
+				margin-bottom: 16px
+			}
+		}
+
+		section.chapter .chapter-text-block .chapter-text .chapter-text-title {
+			margin-bottom: 15px;
+			font-family: Exo\ 2, sans-serif;
+			font-weight: 500;
+			font-size: 18px;
+			line-height: 22px;
+			text-transform: uppercase
+		}
+
+		section.chapter .chapter-text-block .chapter-text.moved-right {
+			transform: translateX(58px);
+			width: calc(100% + 58px)
+		}
+
+		@media (max-width:567px) {
+			section.chapter .chapter-text-block .chapter-text.moved-right {
+				transform: none;
+				width: auto
+			}
+		}
+
+		section.chapter .chapter-text-block .chapter-text.moved-right .text-block {
+			padding: 20px 40px 20px 0
+		}
+
+		@media (max-width:567px) {
+			section.chapter .chapter-text-block .chapter-text.moved-right .text-block {
+				padding: unset
+			}
+		}
+
+		section.chapter .chapter-text-block .chapter-text.moved-left {
+			transform: translateX(-78px);
+			width: calc(100% + 78px)
+		}
+
+		@media (max-width:567px) {
+			section.chapter .chapter-text-block .chapter-text.moved-left {
+				transform: none;
+				width: auto
+			}
+		}
+
+		section.chapter .chapter-text-block .chapter-text p {
+			color: #000
+		}
+
+		section.chapter .chapter-disclaimer,
+		section.chapter .chapter-text-block .chapter-text p {
+			font-family: Open Sans, sans-serif;
+			font-style: normal;
+			font-weight: 300;
+			font-size: 14px;
+			line-height: 19px
+		}
+
+		section.chapter .chapter-disclaimer {
+			margin-bottom: 100px;
+			text-align: center;
+			color: #969696
+		}
+
+		@media (max-width:567px) {
+			section.chapter .chapter-disclaimer {
+				margin-bottom: 25px
+			}
+		}
+
+		section.chapter .paragraph-title {
+			font-family: Exo\ 2, sans-serif;
+			font-style: normal;
+			font-weight: 700;
+			font-size: 36px;
+			line-height: 43px;
+			color: #000;
+			margin-bottom: 16px
+		}
+
+		@media (max-width:567px) {
+			section.chapter .paragraph-title {
+				font-size: 28px;
+				line-height: 32px
+			}
+		}
+
+		section.chapter .paragraph-disclaimer {
+			font-family: Open Sans, sans-serif;
+			font-style: normal;
+			font-weight: 300;
+			font-size: 24px;
+			line-height: 33px;
+			color: #858585
+		}
+
+		@media (max-width:567px) {
+			section.chapter .paragraph-disclaimer {
+				font-size: 18px;
+				line-height: 20px;
+				margin-bottom: 16px
+			}
+		}
+
+		.photo-gallery {
+			display: grid;
+			grid-gap: 30px;
+			grid-template: 165px 165px/165px 165px 165px
+		}
+
+		@media (max-width:567px) {
+			.photo-gallery {
+				display: none
+			}
+		}
+
+		.steps {
+			display: grid;
+			grid-template: auto/3.75fr 1fr 3.75fr 1fr 3.75fr 1fr 3.75fr
+		}
+
+		@media (max-width:567px) {
+			.steps {
+				grid-template: auto auto/3.75fr 3.75fr
+			}
+		}
+
+		.steps .circle-separator-block {
+			margin-top: 86px
+		}
+
+		@media (max-width:567px) {
+			.steps .circle-separator-block {
+				display: none
+			}
+		}
+
+		.steps .circle-shape {
+			display: inline-block;
+			width: 14px;
+			height: 14px;
+			background: #fb7371;
+			border-radius: 50%
+		}
+
+		.steps .step-block .step-number {
+			font-weight: 800;
+			font-size: 72px;
+			line-height: 86px;
+			color: rgba(239, 83, 80, .15);
+			text-align: center
+		}
+
+		.steps .step-block .step-text {
+			font-family: Open Sans, sans-serif;
+			font-size: 14px;
+			line-height: 19px;
+			text-align: center;
+			color: #545454
+		}
+
+		.advantages {
+			margin-left: -46px;
+			margin-right: -46px;
+			margin-bottom: 100px
+		}
+
+		.advantages .adv-item {
+			padding: 0 46px
+		}
+
+		@media (max-width:567px) {
+			.advantages .adv-item {
+				padding-bottom: 1em
+			}
+		}
+
+		.advantages .adv-item .adv-title {
+			font-family: Exo\ 2, sans-serif;
+			font-style: normal;
+			font-weight: 500;
+			font-size: 18px;
+			line-height: 22px;
+			text-align: center;
+			text-transform: uppercase;
+			margin-bottom: 10px;
+			color: #3f3f3f
+		}
+
+		.advantages .adv-item .adv-description {
+			font-family: Open Sans, sans-serif;
+			font-style: normal;
+			font-weight: 300;
+			font-size: 14px;
+			line-height: 19px;
+			text-align: center;
+			color: #545454;
+			max-width: 75%;
+			margin: auto
+		}
+
+		.just-text,
+		.just-text-light {
+			font-family: Open Sans, sans-serif;
+			font-style: normal;
+			font-size: 18px;
+			line-height: 25px;
+			color: #000
+		}
+
+		@media (max-width:567px) {
+
+			.just-text,
+			.just-text-light {
+				font-size: 14px;
+				line-height: 19px
+			}
+		}
+
+		.just-text-light:not(:last-of-type),
+		.just-text:not(:last-of-type) {
+			margin-bottom: 20px
+		}
+
+		.just-text-light img,
+		.just-text img {
+			float: left;
+			margin-right: 20px;
+			margin-bottom: 20px;
+			max-width: 230px;
+			max-height: 230px
+		}
+
+		@media (max-width:567px) {
+
+			.just-text-light img,
+			.just-text img {
+				display: block;
+				width: 100%;
+				float: unset;
+				margin: auto
+			}
+		}
+
+		.just-text-light {
+			font-weight: 300
+		}
+
+		.gallery-sm {
+			display: grid;
+			grid-template: auto/1fr 1fr 1fr;
+			grid-column-gap: 21px;
+			margin-bottom: 20px
+		}
+
+		.card-container {
+			padding: 0 30px
+		}
+
+		@media (max-width:567px) {
+			.card-container {
+				padding: 0
+			}
+		}
+
+		.card-container .card {
+			background: #fff;
+			box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+			border-radius: 5px;
+			padding: 30px
+		}
+
+		.modal-wrapper {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, .65);
+			z-index: 102;
+			display: flex;
+			justify-content: center;
+			align-items: center
+		}
+
+		.modal-wrapper.visible {
+			animation: fadeIn .25s ease-in-out
+		}
+
+		.modal-wrapper.visible .modal-inner,
+		.modal-wrapper.visible img {
+			animation: scaleIn .25s ease-in-out
+		}
+
+		.modal-wrapper.hidden {
+			animation: fadeOut .25s ease-in-out
+		}
+
+		.modal-wrapper.hidden .modal-inner,
+		.modal-wrapper.hidden img {
+			animation: scaleOut .25s ease-in-out
+		}
+
+		.modal-wrapper .modal-inner {
+			position: relative;
+			display: -ms-flexbox;
+			display: flex;
+			-ms-flex-direction: column;
+			flex-direction: column;
+			width: 500px;
+			pointer-events: auto;
+			background-color: #fff;
+			background-clip: padding-box;
+			border-radius: 5px;
+			outline: 0;
+			max-height: 80%;
+			overflow: auto;
+			box-shadow: 0 0 1rem rgba(0, 0, 0, .2)
+		}
+
+		@media (max-width:567px) {
+			.modal-wrapper .modal-inner {
+				width: 90%
+			}
+		}
+
+		.modal-wrapper .modal-close-button {
+			position: absolute;
+			top: 0;
+			right: 0;
+			display: block;
+			width: 60px;
+			height: 60px;
+			transition: background-color .1s ease-in-out;
+			background: transparent;
+			padding: 20px
+		}
+
+		.modal-wrapper .modal-close-button:focus,
+		.modal-wrapper .modal-close-button:hover {
+			background: rgba(0, 0, 0, .1)
+		}
+
+		@keyframes fadeIn {
+			0% {
+				opacity: 0
+			}
+
+			to {
+				opacity: 1
+			}
+		}
+
+		@keyframes fadeOut {
+			0% {
+				opacity: 1
+			}
+
+			to {
+				opacity: 0
+			}
+		}
+
+		@keyframes scaleIn {
+			0% {
+				transform: scale(.6)
+			}
+
+			to {
+				transform: scale(1)
+			}
+		}
+
+		@keyframes scaleOut {
+			0% {
+				transform: scale(1)
+			}
+
+			to {
+				transform: scale(.6)
+			}
+		}
+
+		nav.navbar {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 96px;
+			background: hsla(0, 0%, 100%, .9);
+			padding: 20px 0;
+			z-index: 9;
+			transition: all .25s ease-in-out;
+			border-bottom: 2px solid transparent
+		}
+
+		nav.navbar.with-border {
+			background: #fff;
+			border-bottom: 2px solid #e9e9e9
+		}
+
+		@media (max-width:567px) {
+			nav.navbar.with-border {
+				border-bottom: 2px solid transparent
+			}
+		}
+
+		@media (max-width:567px) {
+			nav.navbar {
+				height: 70px;
+				position: relative;
+				background: #fff;
+				box-shadow: 0 2px 1em rgba(0, 0, 0, .05);
+				padding: 0 1em;
+				display: flex;
+				align-items: center;
+				justify-content: space-between
+			}
+		}
+
+		nav.navbar .navbar-logo {
+			width: 56px;
+			height: 56px;
+			margin-right: 50px
+		}
+
+		@media (max-width:567px) {
+			nav.navbar .navbar-logo {
+				width: 30px;
+				height: 30px;
+				margin-right: 0
+			}
+		}
+
+		nav.navbar .navbar-logo a {
+			display: inline-block
+		}
+
+		nav.navbar .navbar-logo img {
+			display: inline-block;
+			width: 100%
+		}
+
+		nav.navbar .navbar-title {
+			font-size: 18px;
+			line-height: 25px;
+			font-weight: 300;
+			color: #000;
+			font-style: normal;
+			flex: 1 1 0;
+			text-align: left;
+			font-family: Open Sans, sans-serif
+		}
+
+		@media (max-width:567px) {
+			nav.navbar .navbar-title {
+				text-align: center;
+				font-size: 16px;
+				line-height: 19px;
+				font-weight: 600;
+				transform: translateX(-15px)
+			}
+
+			nav.navbar .navbar-title>.service-description {
+				display: none
+			}
+		}
+
+		footer {
+			border-top: 2px solid #e9e9e9;
+			padding: 20px 0
+		}
+
+		footer .button-up {
+			display: block;
+			width: 56px;
+			height: 56px;
+			cursor: pointer;
+			background: #e9e9e9;
+			margin-left: 50px
+		}
+
+		footer .button-up:focus,
+		footer .button-up:hover {
+			background: #d0d0d0
+		}
+
+		footer .button-up img {
+			display: inline-block;
+			width: 24px;
+			height: 24px
+		}
+
+		footer .link-group {
+			padding: 0 70px
+		}
+
+		footer .footer-logo {
+			width: 56px;
+			height: 56px;
+			margin-right: 50px
+		}
+
+		@media (max-width:567px) {
+			footer .footer-logo {
+				width: 30px;
+				height: 30px;
+				margin-right: 0
+			}
+		}
+
+		footer .footer-logo img {
+			display: inline-block;
+			width: 100%
+		}
+
+		footer .footer-info {
+			margin: 39px 0 30px
+		}
+
+		footer .footer-info .footer-info-text {
+			font-family: Open Sans, sans-serif;
+			font-weight: 300;
+			font-size: 14px;
+			line-height: 19px
+		}
+
+		footer .footer-info .footer-info-socials a {
+			margin: 10px
+		}
+
+		footer .footer-info .footer-info-socials a:first-child {
+			margin-left: 0
+		}
+
+		footer .footer-info .footer-info-socials a:last-child {
+			margin-right: 0
+		}
+
+		footer .footer-info .footer-info-socials a img {
+			display: inline-block;
+			width: 30px;
+			height: 30px
+		}
+
+		.docs-body {
+			margin-top: 146px
+		}
+
+		@media (max-width:567px) {
+			.docs-body {
+				margin-top: 16px
+			}
+		}
+
+		.docs-body .docs-title {
+			margin: 50px auto;
+			font-family: Exo\ 2, sans-serif;
+			font-style: normal;
+			font-weight: 300;
+			font-size: 24px;
+			line-height: 29px;
+			text-align: center;
+			text-transform: uppercase
+		}
+
+		.docs-body .docs-content {
+			background: #fff;
+			box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+			border-radius: 5px;
+			margin: 0 auto 100px;
+			max-width: 957px;
+			padding: 50px
+		}
+
+		@media (max-width:567px) {
+			.docs-body .docs-content {
+				padding: 0 1em;
+				box-shadow: none
+			}
+		}
+
+		.docs-body .docs-content.clean {
+			padding: 0;
+			background: transparent;
+			box-shadow: none
+		}
+
+		.docs-body .docs-content .docs-content-col {
+			padding: 30px 40px;
+			background: #f9f9f9;
+			border-radius: 5px;
+			height: 100%
+		}
+
+		@media (max-width:567px) {
+			.docs-body .docs-content .docs-content-col {
+				padding: 1em
+			}
+
+			.docs-body .docs-content .docs-content-col:not(:last-child) {
+				margin-bottom: 1.25em
+			}
+		}
+
+		.docs-body .docs-content .docs-content-col .docs-content-subtitle {
+			font-family: Exo\ 2, sans-serif;
+			font-style: normal;
+			font-weight: 300;
+			font-size: 18px;
+			line-height: 22px;
+			text-transform: uppercase;
+			color: #000;
+			margin-bottom: 20px
+		}
+
+		.docs-body .docs-content .docs-content-col textarea {
+			height: fit-content;
+			display: block;
+			width: 100%;
+			resize: none;
+			background: #fff;
+			border: 1px solid rgba(0, 0, 0, .4);
+			box-sizing: border-box;
+			border-radius: 5px;
+			padding: 10px 20px;
+			font-family: Courier New, monospace;
+			line-height: 20px;
+			font-size: 14px
+		}
+
+		.docs-body .docs-content .docs-content-col p {
+			font-family: Open Sans, sans-serif;
+			font-style: normal;
+			font-weight: 300;
+			font-size: 14px;
+			line-height: 19px;
+			color: #3f3f3f
+		}
+
+		.docs-body .docs-content .docs-content-col p:not(:last-child) {
+			margin-bottom: 10px
+		}
+
+		.docs-body .docs-content .docs-content-col small {
+			font-family: Open Sans, sans-serif;
+			font-style: normal;
+			font-weight: 300;
+			font-size: 11px;
+			line-height: 15px;
+			color: #696969;
+			display: inline-block
+		}
+
+		.docs-body .docs-content .docs-content-col small:not(:last-child) {
+			margin-bottom: 20px
+		}
+
+		.docs-body .docs-content .docs-content-col input[type=text] {
+			font-family: Open Sans, sans-serif;
+			font-style: normal;
+			font-weight: 300;
+			font-size: 14px;
+			background: #fff;
+			border: 1px solid rgba(0, 0, 0, .4);
+			box-sizing: border-box;
+			border-radius: 5px;
+			display: block;
+			margin-bottom: 20px;
+			height: 36px;
+			width: 100%;
+			padding: 0 10px
+		}
+
+		.docs-body .docs-content .docs-content-col .file-input {
+			position: relative;
+			margin-bottom: 5px
+		}
+
+		.docs-body .docs-content .docs-content-col .file-input label {
+			background: #383838;
+			border-radius: 5px;
+			display: block;
+			cursor: pointer;
+			padding: 9px 0;
+			text-align: center;
+			font-family: Exo\ 2, sans-serif;
+			font-style: normal;
+			font-weight: 500;
+			font-size: 14px;
+			line-height: 17px;
+			text-transform: uppercase;
+			color: #fff;
+			stroke: #fff;
+			fill: #fff
+		}
+
+		.docs-body .docs-content .docs-content-col .file-input label:hover {
+			background: #6b6b6b
+		}
+
+		.docs-body .docs-content .docs-content-col .file-input input[type=file] {
+			width: 1px;
+			height: 1px;
+			opacity: 0;
+			position: absolute;
+			top: 100%;
+			left: 50%
+		}
+
+		.card .card-header {
+			margin-bottom: 30px
+		}
+
+		.card .card-header .card-title {
+			display: grid;
+			grid-template: auto/50px auto;
+			grid-column-gap: 15px
+		}
+
+		.card .card-header .card-title .image {
+			display: block;
+			height: 50px;
+			width: 50px;
+			border-radius: 50%;
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: 50%
+		}
+
+		.card .card-header .card-title .card-name {
+			font-family: Exo\ 2, sans-serif;
+			font-style: normal;
+			font-weight: 500;
+			font-size: 18px;
+			line-height: 22px;
+			color: #3f3f3f
+		}
+
+		.card .card-body .qrcode {
+			display: block;
+			margin: 0 auto;
+			max-width: 250px;
+			max-height: 250px
+		}
+
+		.card .card-info:not(:last-child) {
+			margin-bottom: 20px;
+			padding-bottom: 20px;
+			border-bottom: 1px solid #e9e9e9
+		}
+
+		.card .card-info p {
+			font-family: Exo\ 2, sans-serif;
+			font-style: normal;
+			font-weight: 300;
+			font-size: 18px;
+			line-height: 22px;
+			color: #3f3f3f
+		}
+
+		.card .card-info p ul {
+			list-style: none;
+			display: block
+		}
+
+		.card .card-info p ul li {
+			display: block;
+			font-family: Exo\ 2, sans-serif;
+			font-style: normal;
+			font-size: 18px;
+			line-height: 22px;
+			color: #3f3f3f;
+			text-decoration: none;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap
+		}
+
+		.card .card-info p ul li a {
+			text-decoration: none
+		}
+
+		.card .card-info p ul li:not(:last-child) {
+			margin-bottom: 15px
+		}
+
+		.card .card-info .subtitle {
+			font-family: Exo\ 2, sans-serif;
+			font-style: normal;
+			font-weight: 300;
+			font-size: 24px;
+			line-height: 29px;
+			color: #3f3f3f;
+			margin-bottom: 30px
+		}
+	</style>
+</head>
+
+<body>
+	<div id="app">
+		<div>
+			<nav class="navbar">
+				<div class="container flx-jcsb-aic">
+					<div class="navbar-logo">
+						<a href="#">
+							<img src="static/logo/logo.png" alt="Logo"/>
+						</a>
+					</div>
+					<div class="navbar-title">
+						<span class="service-name">QRCARD.BIZ</span>
+						<span class="service-description">- электронные визитки Web 3.0</span>
+					</div>
+					<div class="navbar-contact-button">
+						<button class="btn btn-primary btn-outlined" style="border-radius: 5px;">Написать нам
+							<svg class="svg-icon-sm" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135.467 135.467" style="margin-left: 6px;">
+								<g fill="none" stroke-width="10">
+									<path d="M1.88 20.703v93.97h131.558v-93.97z"></path>
+									<path d="M2.685 31.443l57.557 49.334s4.612 4.363 8.222 4.363c3.61 0 8.223-4.363 8.223-4.363l57.557-49.334M2.685 103.934l43.763-34.903m87.796 34.903L90.48 69.031"></path>
+								</g>
+							</svg>
+						</button>
+					</div>
+				</div>
+			</nav>
+			<div class="modal-wrapper visible" style="display: none;">
+				<div class="modal-inner">
+					<div class="feedback-form">
+						<div class="form-title">Обратная связь</div>
+						<form>
+							<div class="input-group">
+								<label for="name">Ваше имя</label>
+								<input type="text" name="name" id="name" required="">
+							</div>
+							<div class="input-group">
+								<label for="email">Email для связи</label>
+								<input type="email" name="email" id="email" required="">
+							</div>
+							<div class="input-group">
+								<label for="message">Сообщение</label>
+								<textarea rows="6" name="message" id="message" required=""></textarea>
+							</div>
+							<button type="button" class="btn btn-primary btn-big">Отправить</button>
+						</form>
+					</div>
+				</div>
+				<button class="modal-close-button">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+						<path d="M30 30l440 440m0-440L30 470" fill="none" stroke="#fff" stroke-width="60" stroke-linecap="round"></path>
+					</svg>
+				</button>
+			</div>
+			<header>
+				<img src="static/header/macbook.png" class="header-background top right" alt="" />
+				<img src="static/header/iphone.png" class="header-background bottom left" alt="" />
+				<div class="container">
+					<nav class="header-nav link-group flx-jcc">
+						<a href="#">Использовать бота</a>
+						<a href="onelink.html">Визитка с одной ссылкой</a>
+						<a href="api.html">Виджет для сайта</a>
+					</nav>
+					<div class="header-title flx-jcc">
+						<svg class="title-image" width="800" height="146" viewBox="0 0 800 146" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M259.566 52.392l-.84 1.815.016.008.016.007.808-1.83zm9.6 10.368l-1.851.76.004.008 1.847-.768zm0 42.336l1.846.768.004-.009-1.85-.759zm-9.6 10.368l.817 1.825.012-.005-.829-1.82zm-36.48 0l-.84 1.815.016.008.016.007.808-1.83zm-9.504-10.368l-1.851.759.004.009 1.847-.768zm0-42.336l1.846.768.004-.009-1.85-.759zm9.504-10.368l.817 1.825.012-.005-.829-1.82zm25.344 16.32l-1.824.82.012.029.014.027 1.798-.876zm-14.304 0l-1.807-.858-.005.01-.004.01 1.816.838zm0 30.432l-1.824.82.012.029.014.027 1.798-.876zm14.304 0l-1.807-.858-.005.01-.004.01 1.816.838zm-17.184 30.24l-1.827-.816-.665 1.49 1.325.951 1.167-1.625zm4.415-9.888l.703-1.873-1.762-.66-.767 1.717 1.826.816zm31.585 7.104l1.914.58.672-2.22-2.295-.339-.291 1.979zm-5.088 16.8l-.554 1.922 1.896.546.572-1.888-1.914-.58zm-20.832-91.984c7.75 0 13.494.984 17.4 2.791l1.679-3.63c-4.67-2.161-11.086-3.16-19.079-3.16v4zm17.432 2.806c3.815 1.683 6.677 4.714 8.557 9.297l3.701-1.518c-2.216-5.4-5.754-9.282-10.643-11.439l-1.615 3.66zm8.561 9.306c1.899 4.57 2.919 11.302 2.919 20.352h4c0-9.254-1.029-16.602-3.226-21.887l-3.693 1.535zm2.919 20.352c0 9.048-1.019 15.817-2.923 20.457l3.701 1.518c2.192-5.344 3.222-12.719 3.222-21.975h-4zm-2.919 20.449c-1.879 4.519-4.746 7.566-8.583 9.315l1.659 3.64c4.867-2.219 8.4-6.084 10.617-11.42l-3.693-1.535zm-8.571 9.31c-3.914 1.752-9.667 2.705-17.422 2.705v4c7.988 0 14.395-.967 19.057-3.055l-1.635-3.65zm-17.422 2.705c-7.687 0-13.448-.951-17.433-2.71l-1.615 3.66c4.719 2.082 11.118 3.05 19.048 3.05v-4zm-17.401-2.695c-3.773-1.746-6.614-4.791-8.497-9.32l-3.693 1.535c2.213 5.326 5.708 9.193 10.511 11.415l1.679-3.63zm-8.493-9.312c-1.904-4.64-2.922-11.41-2.922-20.457h-4c0 9.256 1.029 16.631 3.221 21.975l3.701-1.518zM212.51 83.88c0-9.05 1.019-15.782 2.918-20.352l-3.693-1.535c-2.197 5.285-3.225 12.633-3.225 21.887h4zm2.922-20.36c1.884-4.594 4.721-7.624 8.471-9.303l-1.635-3.65c-4.826 2.16-8.325 6.043-10.537 11.434l3.701 1.518zm8.483-9.308c3.978-1.814 9.729-2.796 17.411-2.796v-4c-7.935 0-14.344 1.002-19.07 3.156l1.659 3.64zm26.338 13.68c-.747-1.662-1.925-2.961-3.512-3.82-1.557-.84-3.397-1.2-5.415-1.2v4c1.565 0 2.701.281 3.512.72.781.421 1.363 1.043 1.768 1.94l3.647-1.64zm-8.927-5.02c-2.02 0-3.863.36-5.43 1.195-1.594.85-2.793 2.137-3.577 3.787l3.613 1.716c.432-.91 1.041-1.544 1.847-1.973.833-.444 1.982-.725 3.547-.725v-4zm-9.016 5.002c-.712 1.541-1.172 3.684-1.468 6.276-.299 2.63-.444 5.88-.444 9.73h4c0-3.765.142-6.852.419-9.278.28-2.464.684-4.097 1.124-5.052l-3.631-1.676zm-1.912 16.006c0 3.85.145 7.108.444 9.753.296 2.61.756 4.767 1.46 6.332l3.647-1.642c-.448-.995-.852-2.662-1.132-5.14-.277-2.443-.419-5.538-.419-9.303h-4zm1.93 16.14c1.653 3.393 4.913 4.868 8.998 4.868v-4c-3.084 0-4.624-1.021-5.403-2.62l-3.595 1.752zm8.998 4.868c4.08 0 7.336-1.476 8.919-4.906l-3.631-1.676c-.721 1.562-2.201 2.582-5.288 2.582v4zm8.91-4.886c.748-1.574 1.235-3.742 1.547-6.357.317-2.65.471-5.912.471-9.765h-4c0 3.763-.151 6.853-.442 9.29-.296 2.474-.721 4.13-1.189 5.116l3.613 1.716zm2.018-16.122c0-3.853-.154-7.107-.471-9.743-.312-2.597-.8-4.75-1.556-6.3l-3.595 1.751c.46.945.884 2.568 1.18 5.027.291 2.42.442 5.502.442 9.265h4zm-19.182 46.32l4.416-9.888-3.653-1.632-4.416 9.888 3.653 1.632zm1.887-8.831c7.368 2.763 18.062 5.155 31.995 7.21l.583-3.958c-13.843-2.041-24.205-4.385-31.173-6.998l-1.405 3.746zm30.372 4.651l-5.088 16.8 3.829 1.16 5.088-16.8-3.829-1.16zm-2.62 15.458c-12.524-3.605-22.601-8.194-30.299-13.719l-2.333 3.25c8.174 5.867 18.705 10.622 31.525 14.313l1.107-3.844zM338.961 117v2h2.573l-.635-2.494-1.938.494zm-21.792 0l-1.954.429.345 1.571h1.609v-2zm-4.32-19.68l-1.956.42.002.009 1.954-.429zm-1.825-3.552l-1.28 1.537.069.057.073.05 1.138-1.644zm-10.271-.96v-2h-2v2h2zm0 24.192v2h2v-2h-2zm-20.449 0h-2v2h2v-2zm0-66.24l-.195-1.99-1.805.176v1.814h2zm49.536 3.456l-1.132 1.649.012.008 1.12-1.657zm-6.911 31.488l-.2-1.99-1.8.18v1.81h2zm0 .576h-2v1.761l1.746.223.254-1.984zm10.848 10.368l-1.962.388.01.053.013.053 1.939-.494zM300.753 78.12h-2v2h2v-2zm13.152-1.344l-1.318-1.505-.024.021-.023.022 1.365 1.462zm0-10.944l-1.365 1.462.023.022.024.021 1.318-1.505zm-13.152-1.344v-2h-2v2h2zM338.961 115h-21.792v4h21.792v-4zm-19.839 1.571l-4.32-19.68-3.907.858 4.32 19.68 3.907-.858zm-4.318-19.67c-.412-1.925-1.162-3.753-2.641-4.777l-2.277 3.288c.185.128.651.668 1.007 2.327l3.911-.838zm-2.499-4.67c-1.319-1.098-3.192-1.423-5.12-1.423v4c1.655 0 2.342.315 2.559.496l2.561-3.072zm-5.12-1.423h-6.432v4h6.432v-4zm-8.432 2V117h4V92.808h-4zm2 22.192h-20.449v4h20.449v-4zm-18.449 2V50.76h-4V117h4zM280.5 52.75c6.43-.63 15.728-.95 27.933-.95v-4c-12.244 0-21.698.32-28.324.97l.391 3.98zm27.933-.95c9.894 0 16.509 1.48 20.275 4.065l2.265-3.298c-4.81-3.302-12.467-4.767-22.54-4.767v4zm20.287 4.073c3.586 2.426 5.648 6.887 5.648 14.087h4c0-7.904-2.289-13.938-7.407-17.4l-2.241 3.313zm5.648 14.087c0 4.51-1.052 7.695-2.881 9.838-1.812 2.123-4.629 3.503-8.758 3.916l.399 3.98c4.831-.483 8.734-2.175 11.402-5.3 2.651-3.105 3.838-7.343 3.838-12.434h-4zm-13.439 15.744v.576h4v-.576h-4zm1.746 2.56c2.676.342 4.658 1.256 6.096 2.63 1.443 1.379 2.495 3.372 3.044 6.142l3.923-.776c-.667-3.374-2.031-6.18-4.204-8.258-2.178-2.081-5.012-3.28-8.352-3.706l-.507 3.968zm9.163 8.878l5.184 20.352 3.877-.988-5.184-20.352-3.877.988zM300.753 80.12h7.199v-4h-7.199v4zm7.199 0c1.589 0 2.998-.117 4.185-.385 1.164-.263 2.288-.709 3.132-1.497l-2.729-2.924c-.116.108-.464.334-1.284.52-.797.179-1.884.286-3.304.286v4zm7.27-1.839c1.736-1.519 2.218-4.167 2.218-6.977h-4c0 2.694-.541 3.694-.853 3.967l2.635 3.01zm2.218-6.977c0-2.81-.482-5.458-2.218-6.977l-2.635 3.01c.312.273.853 1.273.853 3.967h4zm-2.171-6.934c-.844-.788-1.968-1.234-3.132-1.497-1.187-.268-2.596-.385-4.185-.385v4c1.42 0 2.507.107 3.304.287.82.185 1.168.411 1.284.52l2.729-2.925zm-7.317-1.882h-7.199v4h7.199v-4zm-9.199 2V78.12h4V64.488h-4zm95.782 35.328l1.99-.201-.202-1.995-1.995.207.207 1.99zm1.536 15.168l.65 1.891 1.499-.515-.159-1.577-1.99.201zm-46.56-4.512l-1.505 1.317.009.011 1.496-1.328zm0-53.184l-1.496-1.327-.009.01 1.505 1.317zm45.12-5.088l1.99.202.17-1.681-1.629-.45-.531 1.93zm-1.536 15.168l-.029 2 1.834.026.185-1.824-1.99-.202zm-26.784 3.168l1.789.894.005-.01.005-.01-1.799-.874zm0 26.784l-1.799.874.005.01.005.01 1.789-.894zm26.234 2.698l1.536 15.168 3.98-.403-1.536-15.168-3.98.403zm2.876 13.075c-5.865 2.016-13.371 3.059-22.582 3.059v4c9.477 0 17.459-1.069 23.882-3.277l-1.3-3.782zm-22.582 3.059c-10.777 0-17.847-2.517-21.832-7.008l-2.992 2.656c5.102 5.749 13.584 8.352 24.824 8.352v-4zm-21.823-6.997c-3.983-4.552-6.225-12.786-6.225-25.275h-4c0 12.727 2.237 22.221 7.215 27.909l3.01-2.634zm-6.225-25.275c0-12.489 2.242-20.723 6.225-25.275l-3.01-2.634c-4.978 5.688-7.215 15.182-7.215 27.91h4zm6.216-25.264c3.985-4.491 11.055-7.008 21.832-7.008v-4c-11.24 0-19.722 2.603-24.824 8.353l2.992 2.655zm21.832-7.008c8.122 0 15.201.85 21.261 2.52l1.062-3.856c-6.484-1.787-13.933-2.664-22.323-2.664v4zm19.802.39l-1.536 15.169 3.98.403 1.536-15.168-3.98-.403zm.482 13.37c-8.962-.128-15.726-.192-20.284-.192v4c4.529 0 11.269.064 20.227.192l.057-4zm-20.284-.192c-3.748 0-6.797 1.336-8.327 4.486l3.598 1.748c.646-1.33 1.949-2.234 4.729-2.234v-4zm-8.317 4.466c-.699 1.397-1.14 3.326-1.42 5.62-.286 2.333-.423 5.213-.423 8.618h4c0-3.315.134-6.019.393-8.133.263-2.155.638-3.538 1.028-4.317l-3.578-1.788zm-1.843 14.238c0 3.406.137 6.293.422 8.641.281 2.312.721 4.253 1.411 5.673l3.598-1.748c-.399-.82-.775-2.239-1.038-4.407-.259-2.132-.393-4.845-.393-8.159h-4zm1.843 14.335c1.543 3.087 4.597 4.369 8.317 4.369v-4c-2.809 0-4.107-.893-4.739-2.158l-3.578 1.788zm8.317 4.369c9.554 0 16.869-.256 21.902-.779l-.413-3.978c-4.823.5-11.972.757-21.489.757v4zm66.861.112l1.947-.457-.363-1.543H439.7v2zm-18.144 0v-2h-1.585l-.362 1.543 1.947.457zM418.196 117v2h1.584l.363-1.543-1.947-.457zm-21.216 0l-1.925-.543-.718 2.543h2.643v-2zm17.184-60.864l1.925.543.001-.004-1.926-.539zm2.592-3.84l1.2 1.6.025-.019.024-.02-1.249-1.56zm27.744 0l-1.25 1.562.025.02.025.018 1.2-1.6zm2.592 3.84l-1.926.54.001.003 1.925-.543zM464.276 117v2h2.643l-.718-2.543-1.925.543zm-21.216 0l-1.947.457.362 1.543h1.585v-2zm-6.72-28.896v2h2.511l-.562-2.448-1.949.448zm-3.264-14.208l-1.965.376.007.036.009.036 1.949-.448zm-1.152-7.584l1.991-.187-.17-1.813h-1.821v2zm-2.592 0v-2h-1.761l-.223 1.747 1.984.253zm-1.152 7.584l1.949.448.009-.04.007-.04-1.965-.368zm-3.264 14.208l-1.949-.448-.563 2.448h2.512v-2zm14.784 12.592h-18.144v4H439.7v-4zm-20.091 1.543l-3.36 14.304 3.894.914 3.36-14.304-3.894-.914zM418.196 115H396.98v4h21.216v-4zm-19.291 2.543l17.184-60.864-3.85-1.086-17.184 60.864 3.85 1.086zm17.185-60.868c.334-1.193.952-2.094 1.866-2.779l-2.4-3.2c-1.647 1.235-2.756 2.895-3.318 4.9l3.852 1.08zm1.915-2.817c.92-.736 1.949-1.098 3.167-1.098v-4c-2.111 0-4.025.662-5.666 1.974l2.499 3.124zm3.167-1.098h18.912v-4h-18.912v4zm18.912 0c1.217 0 2.247.362 3.166 1.098l2.499-3.124c-1.64-1.312-3.555-1.974-5.665-1.974v4zm3.216 1.136c.913.685 1.532 1.586 1.866 2.78l3.852-1.08c-.562-2.005-1.672-3.665-3.318-4.9l-2.4 3.2zm1.867 2.783l17.184 60.864 3.85-1.086-17.184-60.864-3.85 1.086zM464.276 115H443.06v4h21.216v-4zm-19.269 1.543l-3.36-14.304-3.894.914 3.36 14.304 3.894-.914zm-6.718-28.887l-3.264-14.208-3.898.896 3.264 14.208 3.898-.896zM435.04 73.52c-.569-2.972-.941-5.433-1.125-7.395l-3.983.374c.201 2.134.597 4.73 1.179 7.773l3.929-.752zm-3.116-9.208h-2.592v4h2.592v-4zm-4.576 1.747c-.381 2.985-.76 5.472-1.134 7.469l3.931.737c.394-2.1.784-4.669 1.171-7.7l-3.968-.506zm-1.117 7.39l-3.264 14.207 3.898.896 3.264-14.208-3.898-.896zm-1.315 16.655h11.424v-4h-11.424v4zM527.023 117v2h2.573l-.635-2.494-1.938.494zm-21.792 0l-1.953.429.344 1.571h1.609v-2zm-4.32-19.68l-1.956.42.003.009 1.953-.429zm-1.824-3.552l-1.28 1.537.068.057.074.05 1.138-1.644zm-10.272-.96v-2h-2v2h2zm0 24.192v2h2v-2h-2zm-20.448 0h-2v2h2v-2zm0-66.24l-.195-1.99-1.805.176v1.814h2zm49.536 3.456l-1.132 1.649.011.008 1.121-1.657zm-6.912 31.488l-.199-1.99-1.801.18v1.81h2zm0 .576h-2v1.761l1.747.223.253-1.984zm10.848 10.368l-1.962.388.011.053.013.053 1.938-.494zM488.815 78.12h-2v2h2v-2zm13.152-1.344l-1.317-1.505-.024.021-.024.022 1.365 1.462zm0-10.944l-1.365 1.462.024.022.024.021 1.317-1.505zm-13.152-1.344v-2h-2v2h2zM527.023 115h-21.792v4h21.792v-4zm-19.839 1.571l-4.319-19.68-3.907.858 4.32 19.68 3.906-.858zm-4.317-19.67c-.413-1.925-1.162-3.753-2.642-4.777l-2.276 3.288c.184.128.651.668 1.006 2.327l3.912-.838zm-2.5-4.67c-1.318-1.098-3.191-1.423-5.12-1.423v4c1.655 0 2.342.315 2.56.496l2.56-3.072zm-5.12-1.423h-6.432v4h6.432v-4zm-8.432 2V117h4V92.808h-4zm2 22.192h-20.448v4h20.448v-4zm-18.448 2V50.76h-4V117h4zm-1.805-64.25c6.43-.63 15.729-.95 27.933-.95v-4c-12.244 0-21.697.32-28.323.97l.39 3.98zm27.933-.95c9.894 0 16.51 1.48 20.276 4.065l2.264-3.298c-4.81-3.302-12.466-4.767-22.54-4.767v4zm20.287 4.073c3.587 2.426 5.649 6.887 5.649 14.087h4c0-7.904-2.29-13.938-7.407-17.4l-2.242 3.313zm5.649 14.087c0 4.51-1.052 7.695-2.881 9.838-1.813 2.123-4.629 3.503-8.758 3.916l.398 3.98c4.831-.483 8.735-2.175 11.402-5.3 2.651-3.105 3.839-7.343 3.839-12.434h-4zm-13.44 15.744v.576h4v-.576h-4zm1.747 2.56c2.676.342 4.657 1.256 6.095 2.63 1.443 1.379 2.496 3.372 3.044 6.142l3.924-.776c-.668-3.374-2.031-6.18-4.204-8.258-2.178-2.081-5.013-3.28-8.353-3.706l-.506 3.968zm9.163 8.878l5.184 20.352 3.876-.988-5.184-20.352-3.876.988zM488.815 80.12h7.2v-4h-7.2v4zm7.2 0c1.589 0 2.997-.117 4.185-.385 1.164-.263 2.287-.709 3.132-1.497l-2.73-2.924c-.115.108-.464.334-1.284.52-.796.179-1.884.286-3.303.286v4zm7.269-1.839c1.736-1.519 2.219-4.167 2.219-6.977h-4c0 2.694-.541 3.694-.853 3.967l2.634 3.01zm2.219-6.977c0-2.81-.483-5.458-2.219-6.977l-2.634 3.01c.312.273.853 1.273.853 3.967h4zm-2.171-6.934c-.845-.788-1.968-1.234-3.132-1.497-1.188-.268-2.596-.385-4.185-.385v4c1.419 0 2.507.107 3.303.287.82.185 1.169.411 1.284.52l2.73-2.925zm-7.317-1.882h-7.2v4h7.2v-4zm-9.2 2V78.12h4V64.488h-4zM533.242 117h-2v1.867l1.862.128.138-1.995zm0-66.24l-.113-1.997-1.887.108v1.89h2zm46.56 2.016l-.84 1.815.016.008.017.007.807-1.83zm9.6 10.272l-1.847.768.004.008 1.843-.776zm0 41.76l1.843.776.004-.008-1.847-.768zm-9.6 10.272l.817 1.825.013-.005-.83-1.82zm-25.728-12.288h-2v1.975l1.974.025.026-2zm7.488.096l-.026 2h.026v-2zm7.104-3.744l-1.807-.858-.004.01-.005.01 1.816.838zm0-30.432l-1.824.82.013.029.013.027 1.798-.876zm-14.592-3.84v-2h-2v2h2zM535.242 117V50.76h-4V117h4zm-1.887-64.243c11.243-.639 20.642-.957 28.207-.957v-4c-7.667 0-17.148.322-28.433.963l.226 3.994zm28.207-.957c7.751 0 13.494.984 17.4 2.791l1.68-3.63c-4.671-2.161-11.087-3.16-19.08-3.16v4zm17.433 2.806c3.823 1.687 6.683 4.693 8.56 9.21l3.694-1.535c-2.219-5.34-5.759-9.181-10.64-11.335l-1.614 3.66zm8.564 9.218c1.896 4.503 2.915 11.136 2.915 20.056h4c0-9.128-1.029-16.383-3.229-21.608l-3.686 1.552zm2.915 20.056c0 8.918-1.018 15.588-2.919 20.161l3.694 1.535c2.195-5.284 3.225-12.566 3.225-21.696h-4zm-2.915 20.152c-1.875 4.453-4.74 7.475-8.587 9.228l1.66 3.64c4.857-2.215 8.392-6.041 10.613-11.316l-3.686-1.552zm-8.574 9.223c-3.914 1.752-9.667 2.705-17.423 2.705v4c7.988 0 14.395-.967 19.057-3.055l-1.634-3.65zm-17.423 2.705c-9.556 0-18.95-.318-28.182-.955l-.276 3.99a413.13 413.13 0 0 0 28.458.965v-4zm-7.514-11.168l7.488.096.052-4-7.488-.096-.052 4zm7.514.096c4.08 0 7.337-1.476 8.92-4.906l-3.632-1.676c-.721 1.562-2.2 2.582-5.288 2.582v4zm8.911-4.886c.747-1.574 1.234-3.742 1.547-6.357.317-2.65.47-5.912.47-9.765h-4c0 3.763-.151 6.853-.442 9.29-.295 2.474-.72 4.13-1.189 5.116l3.614 1.716zm2.017-16.122c0-3.853-.153-7.107-.47-9.743-.313-2.597-.8-4.75-1.556-6.3l-3.596 1.751c.46.945.885 2.568 1.18 5.027.291 2.42.442 5.502.442 9.265h4zm-2-15.989c-.748-1.661-1.926-2.96-3.513-3.818-1.557-.842-3.397-1.2-5.415-1.2v4c1.566 0 2.702.28 3.513.718.781.422 1.363 1.044 1.767 1.942l3.648-1.642zm-8.928-5.019h-7.488v4h7.488v-4zm-9.488 2v37.92h4v-37.92h-4z"fill="#000"></path>
+							<path opacity=".1" d="M58.848 17.312H40.32V68H19.488V17.312H.96V1.76h57.888v15.552zm83.62-15.552V68h-20.831V40.16h-16.705V68H84.1V1.76h20.832v23.808h16.705V1.76h20.831zM192.472 68h-20.64V1.76h20.64V68zm55.132-22.368l-13.152-5.76c-5.376-2.368-9.184-5.056-11.424-8.064-2.24-3.072-3.36-7.04-3.36-11.904 0-7.424 2.016-12.512 6.048-15.264C229.748 1.824 236.82.416 246.932.416c9.664 0 17.696 1.12 24.096 3.36L269.78 17.12c-7.68-.128-15.456-.192-23.328-.192-2.432 0-4.064.16-4.896.48-.832.32-1.248.992-1.248 2.016 0 .896.384 1.664 1.152 2.304.832.576 2.368 1.312 4.608 2.208l12 4.992c5.44 2.368 9.28 5.088 11.52 8.16s3.36 7.072 3.36 12c0 7.488-1.952 12.736-5.856 15.744-3.904 3.008-10.976 4.512-21.216 4.512-8.64 0-17.184-1.088-25.632-3.264l1.248-14.592c12.672.32 20.704.48 24.096.48 2.624 0 4.352-.16 5.184-.48.896-.32 1.344-.928 1.344-1.824s-.32-1.632-.96-2.208c-.576-.576-1.76-1.184-3.552-1.824zm139.229-28.32h-23.135c-1.28 0-2.304.32-3.072.96-.704.64-1.056 1.472-1.056 2.496v7.776h23.711v13.824H359.57V68h-20.832V16.448c0-4.48 1.472-8.096 4.416-10.848 2.944-2.816 6.72-4.224 11.328-4.224 16.128 0 27.232.448 33.312 1.344l-.961 14.592zM471.431 1.76v38.88c0 10.56-2.112 17.984-6.336 22.272-4.224 4.288-11.52 6.432-21.888 6.432-11.2 0-19.072-2.144-23.616-6.432-4.544-4.288-6.816-11.712-6.816-22.272V1.76h20.832v38.88c0 5.312.576 8.864 1.728 10.656 1.152 1.728 3.424 2.592 6.816 2.592 3.328 0 5.568-.864 6.72-2.592 1.152-1.792 1.728-5.344 1.728-10.656V1.76h20.832zm82.567 15.552H535.47V68h-20.832V17.312H496.11V1.76h57.888v15.552zM637.33 1.76v38.88c0 10.56-2.112 17.984-6.336 22.272-4.224 4.288-11.52 6.432-21.888 6.432-11.2 0-19.072-2.144-23.616-6.432-4.544-4.288-6.816-11.712-6.816-22.272V1.76h20.832v38.88c0 5.312.576 8.864 1.728 10.656 1.152 1.728 3.424 2.592 6.816 2.592 3.328 0 5.568-.864 6.72-2.592 1.152-1.792 1.728-5.344 1.728-10.656V1.76h20.832zM724.698 68h-21.792l-4.32-19.68c-.384-1.792-.992-2.976-1.824-3.552-.768-.64-2.048-.96-3.84-.96h-6.432V68h-20.448V1.76C672.57 1.12 681.946.8 694.17.8c9.984 0 17.12 1.472 21.408 4.416 4.352 2.944 6.528 8.192 6.528 15.744 0 9.6-4.48 14.848-13.44 15.744v.576c6.016.768 9.632 4.224 10.848 10.368L724.698 68zM686.49 29.12h7.2c3.008 0 4.992-.448 5.952-1.344 1.024-.896 1.536-2.72 1.536-5.472 0-2.752-.512-4.576-1.536-5.472-.96-.896-2.944-1.344-5.952-1.344h-7.2V29.12zm112.203 23.328l.96 14.688c-6.4.832-17.888 1.248-34.464 1.248-4.544 0-8.288-1.376-11.232-4.128-2.88-2.816-4.32-6.464-4.32-10.944V16.448c0-4.48 1.44-8.096 4.32-10.848 2.944-2.816 6.688-4.224 11.232-4.224 16.576 0 28.064.416 34.464 1.248l-.96 14.688h-24.288c-1.216 0-2.176.32-2.88.96-.704.64-1.056 1.472-1.056 2.496V27.2h24.768v13.824h-24.768v7.968c0 1.024.352 1.856 1.056 2.496.704.64 1.664.96 2.88.96h24.288z" fill="#000"></path>
+						</svg>
+					</div>
+					<div class="header-tagline flx-jcc">Мы меняем мнение о вас</div>
+					<div class="header-nav">
+						<div class="header-nav-title">Выберите сферу ваших интересов</div>
+						<nav class="header-nav-links row">
+							<div class="col-lg-3">
+								<div class="header-nav-link">
+									<a class="btn btn-big btn-primary btn-block" href="#b2b-services">
+										<span class="abbr">B2B</span>Бизнес / Услуги
+									</a>
+								</div>
+							</div>
+							<div class="col-lg-3">
+								<div class="header-nav-link">
+									<a class="btn btn-big btn-primary btn-block" href="#b2b-goods">
+										<span class="abbr">B2B</span>Бизнес / Товары
+									</a>
+								</div>
+							</div>
+							<div class="col-lg-3">
+								<div class="header-nav-link">
+									<a class="btn btn-big btn-primary btn-block" href="#b2c">
+										<span class="abbr">B2C</span>Личный бренд
+									</a>
+									</div>
+							</div>
+							<div class="col-lg-3">
+								<div class="header-nav-link">
+									<a class="btn btn-big btn-primary btn-block" href="#b2g">
+										<span class="abbr">B2G</span>Госуслуги
+									</a>
+								</div>
+							</div>
+						</nav>
+					</div>
+				</div>
+			</header>
+			<section class="chapter">
+				<div class="container">
+					<div class="chapter-title">
+						<div class="chapter-title-primary-text">Как создать QRcard</div>
+						<div class="chapter-title-secondary-text">QRcard 01</div>
+					</div>
+					<div class="steps">
+						<div class="step-block">
+							<div class="step-number">1</div>
+							<div class="step-text">Определите сферу деятельности с помощью наших описаний</div>
+						</div>
+						<div class="circle-separator-block flx-jcc-aic">
+							<span class="circle-shape"></span>
+						</div>
+						<div class="step-block">
+							<div class="step-number">2</div>
+							<div class="step-text">Перейдите по любой из ссылок, опираясь на ваши интересы</div>
+						</div>
+						<div class="circle-separator-block flx-jcc-aic">
+							<span class="circle-shape"></span>
+						</div>
+						<div class="step-block">
+							<div class="step-number">3</div>
+							<div class="step-text">Следуйте дальнейшим казаниям на странице создания карты</div>
+						</div>
+						<div class="circle-separator-block flx-jcc-aic">
+							<span class="circle-shape"></span>
+						</div>
+						<div class="step-block">
+							<div class="step-number">4</div>
+							<div class="step-text">Если у вас возникли трудности, напишите нам, и мы поможем</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="chapter" id="b2b-services">
+				<div class="container">
+					<div class="chapter-title">
+						<div class="chapter-title-primary-text">B2B - Бизнес / Услуги</div>
+						<div class="chapter-title-secondary-text">QRcard 02</div>
+					</div>
+					<div class="chapter-article normal">
+						<div class="chapter-text-block flx-column flx-jcc">
+							<div class="chapter-text">
+								<p>Ваш сервис требует усовершенствования и новых современных фич. Тратить на это свои
+									ресурсы не имеет смысла. Достаточно использовать готовые виджеты партнерских
+									ресурсов. Так виджет QRCARD.BIZ позволит Вашим пользователям в момент регистрации не
+									покидая Ваш сервис создать себе постоянный QRCARD на все времена.</p>
+							</div>
+							<div class="chapter-text light moved-right">
+								<div class="chapter-text-with-image">
+									<img src="static/home/qr-snoop-dog.png" alt="" class="mobile-hidden" />
+									<div class="text-block flx-column flx-jcc">
+										<div class="chapter-text-title">Идентификация</div>
+										<p>Вы всегда сможете отсканировать QRCARD Вашего клиента в любой момент видя,
+											что это именно тот пользователь, сверяя не только QR технологию но и
+											внешность клиента.</p>
+									</div>
+								</div>
+							</div>
+							<div class="chapter-text">
+								<p>Данным инструментом Вы сможете иметь возможность двойной идентификации пользователя
+									на сервисе и мероприятиях. Ваш клиент не должен будет распечатывать бумажные билеты
+									или получать дополнительные подтверждения на почту с лишними паролями.</p>
+							</div>
+						</div>
+						<img src="static/home/qrcard-logo-labels.png" class="img-block-w100" alt="" style="margin-top:16px" />
+					</div>
+					<div class="chapter-article normal">
+						<div class="link-group">
+							<a href="onelink.html">Визитка с одной ссылкой</a>
+							<a href="api.html">Виджет для сайта</a>
+						</div>
+						<div class="link-group">
+							<a class="highlighted" href="#">Написать нам
+								<svg class="svg-icon-sm" style="margin-left:6px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135.467 135.467">
+									<g fill="none" stroke-width="10">
+										<path d="M1.88 20.703v93.97h131.558v-93.97z"></path>
+										<path d="M2.685 31.443l57.557 49.334s4.612 4.363 8.222 4.363c3.61 0 8.223-4.363 8.223-4.363l57.557-49.334M2.685 103.934l43.763-34.903m87.796 34.903L90.48 69.031"></path>
+									</g>
+								</svg>
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="chapter" id="b2b-goods">
+				<div class="container">
+					<div class="chapter-title">
+						<div class="chapter-title-primary-text">B2B - Бизнес / Товары</div>
+						<div class="chapter-title-secondary-text">QRcard 03</div>
+					</div>
+					<div class="chapter-article reverse">
+						<img src="static/home/qrcard-logo-can.png" alt=""/>
+						<div class="chapter-text-block flx-column flx-jcc">
+							<div class="chapter-text">
+								<p>До создания технологии QRCARD (не путать с QRCODE) Ваши клиенты увидев Ваш товарный
+									знак, логотип или бренд, максимум что делали это вспоминали о вас или запоминали Вас
+									в 2% из 100%.</p>
+							</div>
+							<div class="chapter-text moved-left">
+								<div class="chapter-text-with-image flx-aic">
+									<img src="static/home/qr-qrcard-logo.png" alt="" class="mobile-hidden"/>
+									<div class="text-block flx-column flx-jcc">
+										<p>Теперь когда логотип наших клиентов оживлен с помощью технологии QRCARD,
+											клиенты увидев торговую марку в коде QR первое, что начинают делать это
+											сканировать. Естественно в 1 клик попадая к Вам на сервис, где могут
+											ознакомиться с товарами и сделать покупки. (а если у вас установлен наш
+											виджет ссылка, то и авторизуется)</p>
+									</div>
+								</div>
+							</div>
+							<div class="chapter-text">
+								<p>Таким простым способом мы минимизировали расходы своих клиентов на продвижение и дали
+									людям возможность в 1 клик переходить на Ваш сайт.</p>
+							</div>
+							<div class="chapter-text">
+								<p>Дизайн технологии QRCARD настолько минималистичен и элегантен, что не портит дизайн
+									Вашего бренда и не закрывает его от узнаваемости.</p>
+							</div>
+						</div>
+					</div>
+					<div class="chapter-article normal">
+						<div class="link-group">
+							<a href="#">Использовать бота</a>
+							<a href="onelink.html">Визитка с одной ссылкой</a>
+						</div>
+						<div class="link-group">
+							<a class="highlighted" href="#">Написать нам
+								<svg class="svg-icon-sm" style="margin-left:6px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135.467 135.467">
+									<g fill="none" stroke-width="10">
+										<path d="M1.88 20.703v93.97h131.558v-93.97z"></path>
+										<path d="M2.685 31.443l57.557 49.334s4.612 4.363 8.222 4.363c3.61 0 8.223-4.363 8.223-4.363l57.557-49.334M2.685 103.934l43.763-34.903m87.796 34.903L90.48 69.031"></path>
+									</g>
+								</svg>
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="chapter" id="b2c">
+				<div class="container">
+					<div class="chapter-title">
+						<div class="chapter-title-primary-text">B2С - Личный бренд</div>
+						<div class="chapter-title-secondary-text">QRcard 04</div>
+					</div>
+					<div class="chapter-article normal">
+						<div class="chapter-text-block big-text flx-column flx-jcc" style="max-width:auto">
+							<div class="chapter-text">
+								<p>Пользоваться цифровой визиткой так удобно и эффектно что коллеги и новые знакомые
+									позавидуют Вашей находчивости и прогрессивности.</p>
+							</div>
+							<div class="chapter-text">
+								<div class="chapter-text-title">Экология и технологии</div>
+								<p>Бумажные визитки. Что может быть более не удобным? Наверное лишь мысли о бессмысленно
+									уничтоженных деревьев. В электронную визитку QRCARD возможно зашить столько
+									информации, сколько Вам позволит Ваше воображение и желания.</p>
+							</div>
+							<div class="chapter-text">
+								<p>Естественно, что за Вами станут повторять и искать возможности узнать, где и как Вы
+									получили такую возможность как QRCARD. Но будьте бдительны, старообрядцы на бумажных
+									носителях будут тщетно уговаривать Вас вернуться в свои ряды, просто для того, что
+									бы одним не быть там несчастными. Такова психология неудачников.</p>
+							</div>
+						</div>
+						<div>
+							<div class="flx-aic" style="margin-bottom:16px;margin-top:16px">
+								<img src="static/home/qr-ronaldo-gretta.png" class="img-block-w100" alt=""/>
+							</div>
+							<div class="row">
+								<div class="col-lg-9">
+									<div class="chapter-text-block big-text">
+										<div class="chapter-text">
+											<p>Не стесняйтесь, создавайте на нашем сервисе свой QRCARD и редактируйте
+												его далее бесплатно любое количество лет Вашей прекрасной жизни.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="chapter-article normal">
+						<div class="link-group">
+							<a href="#">Использовать бота</a>
+							<a href="onelink.html">Визитка с одной ссылкой</a>
+						</div>
+						<div class="link-group">
+							<a class="highlighted" href="#">Написать нам
+								<svg class="svg-icon-sm" style="margin-left:6px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135.467 135.467">
+									<g fill="none" stroke-width="10">
+										<path d="M1.88 20.703v93.97h131.558v-93.97z"></path>
+										<path d="M2.685 31.443l57.557 49.334s4.612 4.363 8.222 4.363c3.61 0 8.223-4.363 8.223-4.363l57.557-49.334M2.685 103.934l43.763-34.903m87.796 34.903L90.48 69.031"></path>
+									</g>
+								</svg>
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="chapter" id="b2g">
+				<div class="container">
+					<div class="chapter-title">
+						<div class="chapter-title-primary-text">B2G - Госуслуги</div>
+						<div class="chapter-title-secondary-text">QRcard 05</div>
+					</div>
+					<div class="chapter-article reverse">
+						<div>
+							<div class="flx-aic">
+								<img src="static/home/qrcard-logo-card.png" class="img-block-w100" alt=""/>
+							</div>
+						</div>
+						<div class="chapter-text-block big-text flx-column flx-jcc">
+							<div class="chapter-text">
+								<p>В России Госуслуги это ультрасовременный трендовый технологический процесс. Поэтому
+									такой сервис как MBM.MOS.RU первый в России заказал у нас QRCARD для сервиса Малый
+									Бизнес Москвы. Это ожидаемый заказ, ведь это управление создаёт образовательный
+									процесс для малого и среднего предпринимательства России.</p>
+							</div>
+							<div class="chapter-text moved-left">
+								<div class="chapter-text-with-image small-image reverse flx-aic">
+									<div class="text-block flx-column flx-jcc" style="padding:20px 0 20px 20px">
+										<div class="chapter-text-title">Продвижение</div>
+										<p>Чем занимаетесь Вы, какие услуги у Вас? Какому департаменту Вы принадлежите?
+											Все это важно, ведь с технологией QRCARD, Вы сможете стать в сотни тысяч раз
+											кликабельнее! Кликабельность и переходы в наше время это физическое действие
+											от которого зависит многое.</p>
+									</div>
+									<img src="static/home/qr-qrcard-logo.png" class="img-block-w100 mobile-hidden" alt=""/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="chapter-article reverse">
+						<div class="chapter-text-block big-text flx-column flx-jcc">
+							<div class="chapter-text">
+								<p>Не ждите завтрашнего дня, как прихода будущего делайте будущее с нами уже сейчас.
+									Закажите или создайте сами QRCARD для вашего логотипа или прикрепите наш виджет на
+									свой сайт для регистрации и двухсторонней идентификации пользователей.</p>
+							</div>
+						</div>
+					</div>
+					<div class="chapter-article reverse">
+						<div class="link-group">
+							<a href="#">Использовать бота</a>
+							<a href="onelink.html">Визитка с одной ссылкой</a>
+							<a href="api.html">Виджет для сайта</a>
+						</div>
+						<div class="link-group">
+							<a class="highlighted" href="#">Написать нам
+								<svg class="svg-icon-sm" style="margin-left:6px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135.467 135.467">
+									<g fill="none" stroke-width="10">
+										<path d="M1.88 20.703v93.97h131.558v-93.97z"></path>
+										<path d="M2.685 31.443l57.557 49.334s4.612 4.363 8.222 4.363c3.61 0 8.223-4.363 8.223-4.363l57.557-49.334M2.685 103.934l43.763-34.903m87.796 34.903L90.48 69.031"></path>
+									</g>
+								</svg>
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="chapter">
+				<div class="container">
+					<div class="chapter-title">
+						<div class="chapter-title-primary-text">Как рождался QRCARD</div>
+						<div class="chapter-title-secondary-text">QRcard 06</div>
+					</div>
+					<div class="chapter-article for-gallery">
+						<div class="chapter-text-block big-text flx-column flx-jcc">
+							<div class="chapter-text">
+								<div class="chapter-text-title">Всемирная история QRCARD</div>
+								<p>В конце 2019 года я очередной раз установил себе WeChat и попытался понять, что это
+									за сервис. Увидел там QRcode с фотографией внутри рамки. Идея показалась интересной.
+									Но удивило почему такие ограничения на размер изображения в этой рамке кода.
+									Выяснилось, что ВеЧат использует 12% пространства в рамке для размещения фото
+									пользователя. Естественно меня заусило и мы стали искать решение. Дорешались
+									расширив пространство для изображения до 30%.</p>
+							</div>
+						</div>
+						<div class="photo-gallery">
+							<img src="static/home/qr-dud.png" class="img-block-w100 img-block-h100" alt=""/>
+							<img src="static/home/qr-shnurov.png" class="img-block-w100 img-block-h100" alt=""/>
+							<img src="static/home/qr-stallone.png" class="img-block-w100 img-block-h100" alt=""/>
+							<img src="static/home/qr-eldzhey.png" class="img-block-w100 img-block-h100" alt=""/>
+							<img src="static/home/qr-kosta.png" class="img-block-w100 img-block-h100" alt=""/>
+							<img src="static/home/qr-kurpatov.png" class="img-block-w100 img-block-h100" alt=""/>
+						</div>
+					</div>
+					<div class="chapter-article for-gallery">
+						<div class="link-group">
+							<a class="highlighted" href="#">Читать больше
+								<svg class="svg-icon-sm" style="margin-left:6px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+									<path d="M0 9h16.47m-4.87 5l4.998-5L11.6 4"></path>
+								</svg> 
+							</a>
+						</div>
+						<div class="link-group">
+							<a href="#">Использовать бота</a>
+							<a href="onelink.html">Визитка с одной ссылкой</a>
+							<a href="api.html">Виджет для сайта</a>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="chapter">
+				<div class="container">
+					<div class="chapter-title">
+						<div class="chapter-title-primary-text">Наши преимущества</div>
+						<div class="chapter-title-secondary-text">QRcard 07</div>
+					</div>
+					<div class="advantages">
+						<div class="adv-item">
+							<div class="adv-title">Взаимодействие</div>
+							<div class="adv-description">Мгновенный переход Вашего клиента в один клик на Ваш сайт</div>
+						</div>
+						<div class="adv-item">
+							<div class="adv-title">Продвижение</div>
+							<div class="adv-description">Виральность в распространении информации о Вас среди потенциальных клиентов</div>
+						</div>
+						<div class="adv-item">
+							<div class="adv-title">Прогресс</div>
+							<div class="adv-description">Ассоциации Вашего торгового знака с прогрессом в сознании молодежи</div>
+						</div>
+						<div class="adv-item">
+							<div class="adv-title">Популярность</div>
+							<div class="adv-description">Упоминания в СМИ как современной компании использующей новые технологии</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<footer>
+				<div class="container flx-jcsb-aic">
+					<div class="link-group flx-column flx-aic">
+						<a style="text-align:center" class="highlighted" href="#">Написать нам
+							<svg class="svg-icon-sm" style="margin-left:6px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135.467 135.467">
+								<g fill="none" stroke-width="10">
+									<path d="M1.88 20.703v93.97h131.558v-93.97z"></path>
+									<path d="M2.685 31.443l57.557 49.334s4.612 4.363 8.222 4.363c3.61 0 8.223-4.363 8.223-4.363l57.557-49.334M2.685 103.934l43.763-34.903m87.796 34.903L90.48 69.031"></path>
+								</g>
+							</svg>
+						</a>
+					</div>
+				</div>
+				<div class="container">
+					<div class="footer-info flx-jcsb-aic flx-column">
+						<div class="footer-info-text">Все права защищены. Об условиях использования читайте по ссылке</div>
+						<div class="footer-info-text">QRcard.biz - электронные визитки Web 3.0</div>
+						<div class="footer-info-socials flx-aic">
+							<a href="#"><img src="static/footer/icons/social/ok.png" alt=""/></a>
+							<a href="#"><img src="static/footer/icons/social/vk.png" alt=""/></a>
+							<a href="#"><img src="static/footer/icons/social/ig.png" alt=""/></a>
+							<a href="#"><img src="static/footer/icons/social/fb.png" alt=""/></a>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div>
+	<script>
+		window.__PRELOADED_STATE__ = null
+	</script>
+	<script>
+		window.addEventListener("scroll", function() {
+			const
+				oldScroll = this.oldScroll || 0,
+				newScroll = this.scrollY,
+				isScrollDown = newScroll > oldScroll;
+
+			document.querySelector('.navbar').classList.toggle('with-border', isScrollDown);
+
+			this.oldScroll = newScroll;
+		});
+
+		let navButton = document.querySelector('nav button');
+		
+		navButton.addEventListener('click', ()=>{
+			document.querySelector('.modal-wrapper').classList.remove('hidden')
+			document.querySelector('.modal-wrapper').classList.add('visible')
+			document.querySelector('.modal-wrapper').style.display = ''
+			document.querySelector('body').style.overflow = 'hidden'
+		});
+
+		document.querySelector('.modal-close-button').addEventListener('click', ()=>{
+			document.querySelector('.modal-wrapper').classList.remove('visible')
+			document.querySelector('.modal-wrapper').classList.add('hidden')
+			document.querySelector('body').style.overflow = ''
+			setTimeout(()=>{
+				document.querySelector('.modal-wrapper').style.display = 'none'
+			}, 240)
+			
+		});
+	</script>
+</body>
+
+</html>
